@@ -263,20 +263,20 @@ def main():
     Turtle = myTurtle()
     rospy.sleep(1)
     #Task 5: Go in a Circle
-    rospy.loginfo("Task 5")
-    Turtle.drive_circle(0.5)
+    #rospy.loginfo("Task 5")
+    #Turtle.drive_circle(0.5)
 
     #Task 6: Go in a Square
-    rospy.loginfo("Task 6")
-    for i in range (0, 4):
-        Turtle.drive_straight(0.5, 0.1)
-        Turtle.rotate(math.pi/2)
+    #rospy.loginfo("Task 6")
+    #for i in range (0, 4):
+    #    Turtle.drive_straight(0.5, 0.1)
+    #    Turtle.rotate(math.pi/2)
 
     #Task 8: Random Dance
-    rospy.loginfo("Task 8")
-    for i in range (0,4):
-        Turtle.spin_wheels(rand.uniform(-0.2, 0.2), rand.uniform(-0.2, 0.2), rand.uniform(5, 15))
-        rospy.sleep(1)
+    #rospy.loginfo("Task 8")
+    #for i in range (0,4):
+    #    Turtle.spin_wheels(rand.uniform(-0.2, 0.2), rand.uniform(-0.2, 0.2), rand.uniform(5, 15))
+    #    rospy.sleep(1)
     
     rospy.spin()
 
