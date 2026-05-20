@@ -1,6 +1,6 @@
 <launch>
-    <arg name="map_file" default="/workspaces/individual-lab-code-Andracle-1/GridMap.yaml" />
-    <arg name="rviz_config" default="/workspaces/individual-lab-code-Andracle-1/GridMap.rviz" />
+    <arg name="map_file" default="$(find lab2)/maps/GridMap.yaml" />
+    <arg name="rviz_config" default="$(find lab2)/maps/GridMap.rviz" />
 
     <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)" />
 
