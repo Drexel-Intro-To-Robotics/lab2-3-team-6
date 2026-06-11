@@ -1,22 +1,16 @@
 #!/usr/bin/env python3
-<<<<<<< HEAD
 import rospy
 from geometry_msgs.msg import Twist, PoseStamped
 from nav_msgs.msg import Odometry
 import math
 import tf
 import random as rand
-=======
-
-
->>>>>>> bab75f32e67155432271240940c3b31716e1f892
 
 class myTurtle():
     
     
     def __init__(self) -> None:
         """_summary_
-<<<<<<< HEAD
         create all the nessary pubs/subs here and all the nessary other things
         """
         
@@ -33,13 +27,6 @@ class myTurtle():
         self.rate = rospy.Rate(10)
         rospy.on_shutdown(self.stop)
  
-=======
-        
-        create all the nessary pubs/subs here and all the nessary other things
-        
-        """
-        pass 
->>>>>>> bab75f32e67155432271240940c3b31716e1f892
     
         
 
@@ -51,7 +38,6 @@ class myTurtle():
         :param goal: PoseStamped
         :return:
         """
-<<<<<<< HEAD
         rospy.sleep(1)
 
         #Saves Goal Data
@@ -100,9 +86,6 @@ class myTurtle():
         self.stop()
         rospy.loginfo("nav_to_pose complete")
         
-=======
-        pass
->>>>>>> bab75f32e67155432271240940c3b31716e1f892
 
     def odom_cb(self,msg:Odometry) ->None:
         """_summary_
@@ -111,22 +94,17 @@ class myTurtle():
         Args:
             msg (Odometry): _description_
         """
-<<<<<<< HEAD
         self.posx = msg.pose.pose.position.x
         self.posy = msg.pose.pose.position.y
         raworient = msg.pose.pose.orientation
         self.orient = self.convert_to_euler(raworient)
     
-=======
-        pass
->>>>>>> bab75f32e67155432271240940c3b31716e1f892
     
     def stop(self)->None:
         """_summary_
         
         Stop moving
         """
-<<<<<<< HEAD
         rospy.loginfo("Stopping")
         vel_msg = Twist()
         
@@ -138,9 +116,6 @@ class myTurtle():
         self.Twist.publish(vel_msg)
         rospy.loginfo("Stopped")
         
-=======
-        pass
->>>>>>> bab75f32e67155432271240940c3b31716e1f892
         
         
     def drive_straight(self, dist: float, vel: float)->None:
@@ -149,7 +124,6 @@ class myTurtle():
         Args:
             dist (_type_): _description_
         """
-<<<<<<< HEAD
         rospy.sleep(1)
 
         #Save current positions
@@ -171,16 +145,12 @@ class myTurtle():
         self.stop()
         rospy.loginfo("Forward Done")
 
-=======
-        pass
->>>>>>> bab75f32e67155432271240940c3b31716e1f892
         
     
     def spin_wheels(self, u1, u2, time):
         """
         Spin the two wheels
 
-<<<<<<< HEAD
         :param u1: wheel 1 speed (left)
         :param u2: wheel 2 speed (right)
         :param time: time to drive
@@ -208,14 +178,6 @@ class myTurtle():
         self.stop()
         rospy.loginfo("Spin Wheel Done")
         
-=======
-        :param u1: wheel 1 speed
-        :param u2: wheel 2 speed
-        :param time: time to drive
-        :return: None
-        """
-        pass
->>>>>>> bab75f32e67155432271240940c3b31716e1f892
 
     def rotate(self, angle):
         """
@@ -223,7 +185,6 @@ class myTurtle():
         :param angle: angle to rotate
         :return: None
         """
-<<<<<<< HEAD
         rospy.sleep(1)
 
         lastO = self.orient
@@ -281,9 +242,6 @@ class myTurtle():
 
         self.stop()
         rospy.loginfo("Circle Done")
-=======
-        pass
->>>>>>> bab75f32e67155432271240940c3b31716e1f892
     
     def convert_to_euler(self, quat):
         # type: (Quaternion) -> float
@@ -292,20 +250,15 @@ class myTurtle():
         :param quat: quaternion 
         :return: euler angles
         """
-<<<<<<< HEAD
         roll, pitch, yaw = tf.transformations.euler_from_quaternion([quat.x, quat.y, quat.z, quat.w])
         return yaw
 
 
-=======
-        
->>>>>>> bab75f32e67155432271240940c3b31716e1f892
 
 def main():
     """_summary_
     create all the node start up here
     """
-<<<<<<< HEAD
     rospy.init_node("turtlebot", anonymous = False)
     Turtle = myTurtle()
     rospy.sleep(1)
@@ -326,10 +279,6 @@ def main():
     #    rospy.sleep(1)
     
     rospy.spin()
-=======
-    
-    
->>>>>>> bab75f32e67155432271240940c3b31716e1f892
 
 
 

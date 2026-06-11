@@ -33,8 +33,6 @@ class AStarPlanner:
 
         rospy.loginfo("A* Planner Initialized. Waiting for map, start, and goal...")
 
-    # --- CALLBACKS & DATA HANDLING ---
-
     def map_callback(self, msg):
         #Gets map data from the map_server
         self.map_width = msg.info.width
@@ -65,8 +63,6 @@ class AStarPlanner:
         
         self.run_astar()
 
-    # --- COORDINATE CONVERSIONS ---
-
     def world_to_grid(self, x, y):
         #Converts real-world meters into integer grid coordinates
         grid_x = int((x - self.map_origin_x) / self.map_resolution)
@@ -83,14 +79,12 @@ class AStarPlanner:
         #Converts 2D (x,y) grid coordinates to the 1D map array index
         return grid_y * self.map_width + grid_x
 
-    # --- A* ALGORITHM LOGIC ---
-
     def heuristic(self, a, b):
-        #Manhattan
-        #dx = a[0] - b[0]
-        #dy = a[1] -b[1]
-        #return math.sqrt(dx**2 + dy**2)
-        return abs(a[0] - b[0]) + abs(a[1] - b[1])
+    
+        dx = a[0] - b[0]
+        dy = a[1] -b[1]
+        return math.sqrt(dx**2 + dy**2)
+        #return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
     def get_neighbors(self, current):
         #Returns valid neighbors
@@ -135,14 +129,7 @@ class AStarPlanner:
                     heapq.heappush(frontier, (priority, next_node))
                     came_from[next_node] = current
 
-            # Optional: Publish grid cells here for live visualization 
-            # (Warning: Publishing every loop can slow down large maps significantly)
-            #self.publish_gridcells(self.pub_expanded, expanded_nodes)
-            #self.publish_gridcells(self.pub_frontier, [node for _, node in frontier])
-
         rospy.logwarn("A* Failed: No valid path found to the goal.")
-
-    # --- PATH OPTIMIZATION & PUBLISHING ---
 
     def reconstruct_path(self, came_from, current):
         raw_path = [current]
@@ -182,7 +169,7 @@ class AStarPlanner:
             if cross_product != 0:
                 optimized.append(p2)
 
-        # Always add the final goal node
+        # Add the final goal node
         optimized.append(path[-1])
         return optimized
 
